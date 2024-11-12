@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose")
 const DATABASE_URL = "mongodb://127.0.0.1:27017/cohort-tools-api";
 const Cohort = require("./models/Cohorts.model")
+const Student = require("./models/Students.model")
 const PORT = 5005;
 
 
