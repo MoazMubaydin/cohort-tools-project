@@ -5,7 +5,7 @@ const mongoose = require("mongoose")
 const DATABASE_URL = "mongodb://127.0.0.1:27017/cohort-tools-api";
 const Cohort = require("./models/Cohorts.model")
 const PORT = 5005;
-const Schema = mongoose.Schema;
+
 
 // STATIC DATA 
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
