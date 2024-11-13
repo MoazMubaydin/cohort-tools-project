@@ -48,14 +48,31 @@ app.use(cookieParser());
 app.get("/docs", (req, res) => {
   res.sendFile(__dirname + "/views/docs.html");
 });
-// added on day 1
-app.get("/api/cohorts", (req, res, next) => {
-  res.json(cohorts);
-});
-//added on day 1
-app.get("/api/students", (req, res, next) => {
-  res.json(students);
-});
+// Cohort REST
+
+// posting (creating) new cohort
+app.post("/api/cohorts",(req,res)=>{
+  Cohort.create({
+    inprogress: req.body.inprogress,
+    cohortSlug: req.body.cohortSlug,
+    cohortName: req.body.cohortName,
+    program: req.body.program,
+    campus: req.body.campus,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
+    programManager: req.body.programManager,
+    leadTeacher: req.body.leadTeacher,
+    totalHours: req.body.totalHours
+  }).then((createdCohort) => {
+    console.log("cohort created ->", createdCohort);
+    res.status(201).json(createdCohort);
+})
+  .catch((error) => {
+    console.error("Error while creating the cohort ->", error);
+    res.status(500).json({ error: "Failed to create the cohort" });
+  });
+})
+
 
 // START SERVER
 app.listen(PORT, () => {
