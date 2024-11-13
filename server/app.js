@@ -163,6 +163,19 @@ app.get('/api/students/:studentId', (req,res)=>{
     })
 })
 
+//edit (Patch) student by its ID
+app.patch("/api/students/:studentId", (req,res)=>{
+  const {studentId} = req.params;
+  const updatedStudent = req.body;
+  Student.findByIdAndUpdate(studentId,updatedStudent,{new:true})
+  .populate("cohort")
+  .then((updatedStudent)=> res.json(updatedStudent))
+  .catch((error)=>{
+    console.log("Failed to Update student", error)
+    res.status(500).json({error:"Failed to update student"})
+  })
+})
+
 // START SERVER
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
