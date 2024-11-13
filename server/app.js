@@ -150,6 +150,18 @@ app.get('/api/students/cohort/:cohortId',(req,res)=>{
       res.status(500).json({error: "Failed to retreive students from that cohort"})
     })
 })
+//get students by a specific student ID
+app.get('/api/students/:studentId', (req,res)=>{
+  const {studentId} = req.params;
+
+  Student.findById(studentId)
+  .populate("cohort")
+  .then((filteredstudent)=>res.json(filteredstudent))
+  .catch((error)=>{
+    console.log("Error getting student by ID",error);
+    res.status(500).json({error: "Failed to get student by ID"})
+    })
+})
 
 // START SERVER
 app.listen(PORT, () => {
