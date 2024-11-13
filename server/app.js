@@ -138,6 +138,18 @@ app.get('/api/students',(req,res)=>{
     res.status(500).json({error:"Failed to get students array from DB"})
   })
 })
+//Get students from specific Cohort
+app.get('/api/students/cohort/:cohortId',(req,res)=>{
+    const {cohortId} = req.params;
+
+    Student.find({cohort: cohortId})
+    .populate("cohort")
+    .then((filteredStudents)=> res.json(filteredStudents))
+    .catch((error)=>{
+      console.log("Error getting cohorts studetns",e)
+      res.status(500).json({error: "Failed to retreive students from that cohort"})
+    })
+})
 
 // START SERVER
 app.listen(PORT, () => {
