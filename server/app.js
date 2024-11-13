@@ -129,6 +129,15 @@ app.post('/api/students',(req,res)=>{
   })
 })
 
+//Get all students
+app.get('/api/students',(req,res)=>{
+  Student.find()
+  .populate("cohort")
+  .then(studentsArray => res.json(studentsArray))
+  .catch((error)=>{console.log("Error getting students array",error);
+    res.status(500).json({error:"Failed to get students array from DB"})
+  })
+})
 
 // START SERVER
 app.listen(PORT, () => {
