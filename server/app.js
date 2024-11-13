@@ -85,6 +85,15 @@ app.get('/api/cohorts',(req,res)=>{
     res.status(500).json({error:"Failed to get cohorts array from DB"})
   })
 })
+//getting cohort by ID
+app.get('/api/cohorts/:cohortId',(req,res)=>{
+  const {cohortId} = req.params;
+  Cohort.find({_id:cohortId})
+  .then(cohortById => res.json(cohortById))
+  .catch((error)=>{console.log("Error getting cohort by its ID",error);
+    res.status(500).json({error:"Failed to get cohort by its Id from DB"})
+  })
+})
 
 // START SERVER
 app.listen(PORT, () => {
