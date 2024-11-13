@@ -23,4 +23,4 @@ const studentSchema = new Schema({
   
   // EXPORT THE MODELS
   // Export both models in a single object
-  module.exports = { Student };
+  module.exports = Student ;
