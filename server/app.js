@@ -94,6 +94,20 @@ app.get('/api/cohorts/:cohortId',(req,res)=>{
     res.status(500).json({error:"Failed to get cohort by its Id from DB"})
   })
 })
+//Editing (Patch) cohort
+app.patch("/api/cohorts/:cohortId", (req,res)=>{
+  const {cohortId} = req.params;
+  
+  const updatedCohort = req.body;
+  console.log(updatedCohort)
+
+  Cohort.findByIdAndUpdate(cohortId,updatedCohort,{new:true})
+  .then((newcohort)=> res.json(newcohort))
+  .catch((error)=>{
+    console.log("Failed to Update cohort", error)
+    res.status(500).json({error:"Failed to update cohort"})
+  })
+})
 
 // START SERVER
 app.listen(PORT, () => {
