@@ -73,6 +73,18 @@ app.post("/api/cohorts",(req,res)=>{
   });
 })
 
+//app.get("/api/cohorts", (req, res, next) => {
+ // res.json(cohorts);
+//});
+
+//getting all cohorts
+app.get('/api/cohorts',(req,res)=>{
+  Cohort.find()
+  .then(cohortsArray => res.json(cohortsArray))
+  .catch((error)=>{console.log("Error getting cohorts array",error);
+    res.status(500).json({error:"Failed to get cohorts array from DB"})
+  })
+})
 
 // START SERVER
 app.listen(PORT, () => {
