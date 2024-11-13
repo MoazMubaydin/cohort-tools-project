@@ -108,6 +108,17 @@ app.patch("/api/cohorts/:cohortId", (req,res)=>{
     res.status(500).json({error:"Failed to update cohort"})
   })
 })
+//deleteing cohort by its id
+app.delete("/api/cohorts/:cohortId", (req,res)=>{
+  const {cohortId} = req.params;
+  
+  Cohort.findByIdAndDelete(cohortId)
+  .then((deletedCohort)=> res.json(deletedCohort))
+  .catch((error)=>{
+    console.log("Failed to delete cohort", error)
+    res.status(500).json({error:"Failed to delete cohort"})
+  })
+})
 
 // START SERVER
 app.listen(PORT, () => {
