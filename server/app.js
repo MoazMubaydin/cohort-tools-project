@@ -11,8 +11,8 @@ const PORT = 5005;
 // STATIC DATA 
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
 // ...
-const cohorts = require("./cohorts.json"); // added this day1
-const students = require("./students.json"); // added this day1
+//const cohorts = require("./cohorts.json"); // added this day1
+//const students = require("./students.json"); // added this day1
 // INITIALIZE EXPRESS APP - https://expressjs.com/en/4x/api.html#express
 const app = express();
 
