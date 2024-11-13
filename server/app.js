@@ -176,6 +176,19 @@ app.patch("/api/students/:studentId", (req,res)=>{
   })
 })
 
+//Delete student by its ID
+app.delete("/api/students/:studentId", (req,res)=>{
+  const {studentId} = req.params;
+  
+  Student.findByIdAndDelete(studentId)
+  .populate("cohort")
+  .then((deletedStudent)=> res.json(deletedStudent))
+  .catch((error)=>{
+    console.log("Failed to delete student", error)
+    res.status(500).json({error:"Failed to delete student"})
+  })
+})
+
 // START SERVER
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
