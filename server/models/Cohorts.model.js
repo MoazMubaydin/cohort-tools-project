@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const cohortSchema = new Schema({
-    inprogress: Boolean,
+    inProgress: Boolean,
     cohortSlug: String,
     cohortName: String,
     program: String,
