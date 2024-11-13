@@ -119,6 +119,16 @@ app.delete("/api/cohorts/:cohortId", (req,res)=>{
     res.status(500).json({error:"Failed to delete cohort"})
   })
 })
+//Create a student
+app.post('/api/students',(req,res)=>{
+  const newStudent = req.body;
+  Student.create(newStudent)
+  .then((response)=>res.json(response))
+  .catch((error)=>{console.log("failed to create new student", error)
+    res.status(500).json({error: "Failed to create student"})
+  })
+})
+
 
 // START SERVER
 app.listen(PORT, () => {
