@@ -6,7 +6,7 @@ const DATABASE_URL = "mongodb://127.0.0.1:27017/cohort-tools-api";
 const Cohort = require("./models/Cohorts.model");
 const Student = require("./models/Students.model");
 const PORT = 5005;
-
+const {errorHandler, notFoundHandler} = require("./middleware/error-handling")
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
 // ...
@@ -33,6 +33,8 @@ app.use(
   })
 );
 
+
+
 // ...
 app.use(express.json());
 app.use(morgan("dev"));
@@ -50,7 +52,8 @@ app.get("/docs", (req, res) => {
 app.use("/", require("./routes/cohort.routes"));
 app.use("/", require("./routes/student.routes"));
 
-
+app.use(notFoundHandler);
+app.use(errorHandler);
 // START SERVER
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
