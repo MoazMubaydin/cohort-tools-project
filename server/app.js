@@ -2,11 +2,16 @@ const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
+require("dotenv").config();
+
 const DATABASE_URL = "mongodb://127.0.0.1:27017/cohort-tools-api";
 const Cohort = require("./models/Cohorts.model");
 const Student = require("./models/Students.model");
 const PORT = 5005;
-const {errorHandler, notFoundHandler} = require("./middleware/error-handling")
+const {
+  errorHandler,
+  notFoundHandler,
+} = require("./middleware/error-handling");
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
 // ...
@@ -32,8 +37,6 @@ app.use(
     origin: ["http://localhost:5005", "http://localhost:5173/"], // Add the URLs of allowed origins to this array
   })
 );
-
-
 
 // ...
 app.use(express.json());
