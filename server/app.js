@@ -49,8 +49,9 @@ app.get("/docs", (req, res) => {
   res.sendFile(__dirname + "/views/docs.html");
 });
 
-app.use("/", require("./routes/cohort.routes"));
-app.use("/", require("./routes/student.routes"));
+app.use("/api", require("./routes/cohort.routes"));
+app.use("/api", require("./routes/student.routes"));
+app.use("/auth", require("./routes/auth.routes"));
 
 app.use(notFoundHandler);
 app.use(errorHandler);
